@@ -1,0 +1,428 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3F0D52F7219C0B14002FE4FF /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0D52F6219C0B14002FE4FF /* Manager.swift */; };
+		3F0E8007217F365300B93B8C /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0E8006217F365300B93B8C /* main.swift */; };
+		3F0E800E217F559700B93B8C /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0E800D217F559700B93B8C /* Service.swift */; };
+		3F0E8010217F55A500B93B8C /* Accountant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0E800F217F55A500B93B8C /* Accountant.swift */; };
+		3F0E8012217F55AC00B93B8C /* Washer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0E8011217F55AC00B93B8C /* Washer.swift */; };
+		3F0E8014217F55B300B93B8C /* Director.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0E8013217F55B300B93B8C /* Director.swift */; };
+		3F0E8016217F55BA00B93B8C /* Car.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0E8015217F55BA00B93B8C /* Car.swift */; };
+		3F0E8018217F55C500B93B8C /* DispatchQueue+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0E8017217F55C500B93B8C /* DispatchQueue+Extensions.swift */; };
+		3F0E801A217F55D600B93B8C /* Employee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0E8019217F55D600B93B8C /* Employee.swift */; };
+		3F0F17FC2195B136006CFEDF /* Steateble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0F17FB2195B136006CFEDF /* Steateble.swift */; };
+		3F381BE221B7C6AC00428FEC /* Observer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F381BE121B7C6AC00428FEC /* Observer.swift */; };
+		3F381BE621B7C70100428FEC /* WeakObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F381BE521B7C70100428FEC /* WeakObserver.swift */; };
+		3F381BE821B8079600428FEC /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F381BE721B8079500428FEC /* Observable.swift */; };
+		3F73D4A1218303C30020F1A9 /* Strideable+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F73D4A0218303C30020F1A9 /* Strideable+Extensions.swift */; };
+		3F73D4A32183167C0020F1A9 /* RangeReplaceableCollection+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F73D4A22183167C0020F1A9 /* RangeReplaceableCollection+Extensions.swift */; };
+		3F73D4A5218316CB0020F1A9 /* Optional+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F73D4A4218316CB0020F1A9 /* Optional+Extensions.swift */; };
+		3FB67DB32181DEA5007041F9 /* F.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB67DB22181DEA5007041F9 /* F.swift */; };
+		3FD315C92192D05500DE7591 /* CarFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD315C82192D05500DE7591 /* CarFactory.swift */; };
+		3FD584362188436B0051A858 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD584352188436B0051A858 /* Queue.swift */; };
+		3FD584382188451E0051A858 /* NSLocking+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD584372188451E0051A858 /* NSLocking+Extension.swift */; };
+		3FD8DE7A2180574000F28CE3 /* DispatchTime+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD8DE792180574000F28CE3 /* DispatchTime+Extensions.swift */; };
+		3FD8DE81218060D000F28CE3 /* MoneyReceiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD8DE80218060D000F28CE3 /* MoneyReceiver.swift */; };
+		3FD8DE83218060DD00F28CE3 /* MoneyGiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD8DE82218060DD00F28CE3 /* MoneyGiver.swift */; };
+		3FF33EBC218AE6F30024B46D /* Atomic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF33EBB218AE6F30024B46D /* Atomic.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		3F0E8001217F365300B93B8C /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		3F0D52F6219C0B14002FE4FF /* Manager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Manager.swift; sourceTree = "<group>"; };
+		3F0E8003217F365300B93B8C /* CarWash */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = CarWash; sourceTree = BUILT_PRODUCTS_DIR; };
+		3F0E8006217F365300B93B8C /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		3F0E800D217F559700B93B8C /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		3F0E800F217F55A500B93B8C /* Accountant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Accountant.swift; sourceTree = "<group>"; };
+		3F0E8011217F55AC00B93B8C /* Washer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Washer.swift; sourceTree = "<group>"; };
+		3F0E8013217F55B300B93B8C /* Director.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Director.swift; sourceTree = "<group>"; };
+		3F0E8015217F55BA00B93B8C /* Car.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Car.swift; sourceTree = "<group>"; };
+		3F0E8017217F55C500B93B8C /* DispatchQueue+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DispatchQueue+Extensions.swift"; sourceTree = "<group>"; };
+		3F0E8019217F55D600B93B8C /* Employee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Employee.swift; sourceTree = "<group>"; };
+		3F0F17FB2195B136006CFEDF /* Steateble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Steateble.swift; sourceTree = "<group>"; };
+		3F381BE121B7C6AC00428FEC /* Observer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observer.swift; sourceTree = "<group>"; };
+		3F381BE521B7C70100428FEC /* WeakObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakObserver.swift; sourceTree = "<group>"; };
+		3F381BE721B8079500428FEC /* Observable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
+		3F73D4A0218303C30020F1A9 /* Strideable+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Strideable+Extensions.swift"; sourceTree = "<group>"; };
+		3F73D4A22183167C0020F1A9 /* RangeReplaceableCollection+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RangeReplaceableCollection+Extensions.swift"; sourceTree = "<group>"; };
+		3F73D4A4218316CB0020F1A9 /* Optional+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optional+Extensions.swift"; sourceTree = "<group>"; };
+		3FB67DB22181DEA5007041F9 /* F.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = F.swift; sourceTree = "<group>"; };
+		3FD315C82192D05500DE7591 /* CarFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarFactory.swift; sourceTree = "<group>"; };
+		3FD584352188436B0051A858 /* Queue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
+		3FD584372188451E0051A858 /* NSLocking+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSLocking+Extension.swift"; sourceTree = "<group>"; };
+		3FD8DE792180574000F28CE3 /* DispatchTime+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DispatchTime+Extensions.swift"; sourceTree = "<group>"; };
+		3FD8DE80218060D000F28CE3 /* MoneyReceiver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneyReceiver.swift; sourceTree = "<group>"; };
+		3FD8DE82218060DD00F28CE3 /* MoneyGiver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneyGiver.swift; sourceTree = "<group>"; };
+		3FF33EBB218AE6F30024B46D /* Atomic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Atomic.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3F0E8000217F365300B93B8C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3F017F1021B1264400011B16 /* Employee */ = {
+			isa = PBXGroup;
+			children = (
+				3F0E8019217F55D600B93B8C /* Employee.swift */,
+				3F0D52F6219C0B14002FE4FF /* Manager.swift */,
+				3F0E800F217F55A500B93B8C /* Accountant.swift */,
+				3F0E8011217F55AC00B93B8C /* Washer.swift */,
+				3F0E8013217F55B300B93B8C /* Director.swift */,
+			);
+			path = Employee;
+			sourceTree = "<group>";
+		};
+		3F0E7FFA217F365300B93B8C = {
+			isa = PBXGroup;
+			children = (
+				3F2DDED921B6839E00F24CB6 /* Sources */,
+				3F0E8004217F365300B93B8C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		3F0E8004217F365300B93B8C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3F0E8003217F365300B93B8C /* CarWash */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3F2DDED921B6839E00F24CB6 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				3FF33EBA218AE68B0024B46D /* Entities */,
+				3FB67DB82181FFB7007041F9 /* Types */,
+				3FD8DE7C2180609B00F28CE3 /* Extensions */,
+				3FD8DE7D218060B400F28CE3 /* Protocols */,
+				3F0E8006217F365300B93B8C /* main.swift */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		3FB67DB82181FFB7007041F9 /* Types */ = {
+			isa = PBXGroup;
+			children = (
+				3FF33EBB218AE6F30024B46D /* Atomic.swift */,
+				3FB67DB22181DEA5007041F9 /* F.swift */,
+				3FD584352188436B0051A858 /* Queue.swift */,
+				3F381BE521B7C70100428FEC /* WeakObserver.swift */,
+			);
+			path = Types;
+			sourceTree = "<group>";
+		};
+		3FD8DE7C2180609B00F28CE3 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				3FD8DE792180574000F28CE3 /* DispatchTime+Extensions.swift */,
+				3F0E8017217F55C500B93B8C /* DispatchQueue+Extensions.swift */,
+				3F73D4A0218303C30020F1A9 /* Strideable+Extensions.swift */,
+				3F73D4A22183167C0020F1A9 /* RangeReplaceableCollection+Extensions.swift */,
+				3F73D4A4218316CB0020F1A9 /* Optional+Extensions.swift */,
+				3FD584372188451E0051A858 /* NSLocking+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		3FD8DE7D218060B400F28CE3 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				3FD8DE80218060D000F28CE3 /* MoneyReceiver.swift */,
+				3FD8DE82218060DD00F28CE3 /* MoneyGiver.swift */,
+				3F0F17FB2195B136006CFEDF /* Steateble.swift */,
+				3F381BE121B7C6AC00428FEC /* Observer.swift */,
+				3F381BE721B8079500428FEC /* Observable.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		3FD8DE842180613000F28CE3 /* Clients */ = {
+			isa = PBXGroup;
+			children = (
+				3F0E8015217F55BA00B93B8C /* Car.swift */,
+			);
+			path = Clients;
+			sourceTree = "<group>";
+		};
+		3FF33EBA218AE68B0024B46D /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				3F0E800D217F559700B93B8C /* Service.swift */,
+				3FD315C82192D05500DE7591 /* CarFactory.swift */,
+				3FD8DE842180613000F28CE3 /* Clients */,
+				3F017F1021B1264400011B16 /* Employee */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3F0E8002217F365300B93B8C /* CarWash */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3F0E800A217F365300B93B8C /* Build configuration list for PBXNativeTarget "CarWash" */;
+			buildPhases = (
+				3F0E7FFF217F365300B93B8C /* Sources */,
+				3F0E8000217F365300B93B8C /* Frameworks */,
+				3F0E8001217F365300B93B8C /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CarWash;
+			productName = SecondProgramm;
+			productReference = 3F0E8003217F365300B93B8C /* CarWash */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3F0E7FFB217F365300B93B8C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1000;
+				LastUpgradeCheck = 1000;
+				ORGANIZATIONNAME = Student;
+				TargetAttributes = {
+					3F0E8002217F365300B93B8C = {
+						CreatedOnToolsVersion = 10.0;
+					};
+				};
+			};
+			buildConfigurationList = 3F0E7FFE217F365300B93B8C /* Build configuration list for PBXProject "CarWash" */;
+			compatibilityVersion = "Xcode 10.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 3F0E7FFA217F365300B93B8C;
+			productRefGroup = 3F0E8004217F365300B93B8C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3F0E8002217F365300B93B8C /* CarWash */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3F0E7FFF217F365300B93B8C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3F0D52F7219C0B14002FE4FF /* Manager.swift in Sources */,
+				3FD8DE7A2180574000F28CE3 /* DispatchTime+Extensions.swift in Sources */,
+				3FD584382188451E0051A858 /* NSLocking+Extension.swift in Sources */,
+				3F73D4A5218316CB0020F1A9 /* Optional+Extensions.swift in Sources */,
+				3F0E8007217F365300B93B8C /* main.swift in Sources */,
+				3F73D4A1218303C30020F1A9 /* Strideable+Extensions.swift in Sources */,
+				3F0F17FC2195B136006CFEDF /* Steateble.swift in Sources */,
+				3F0E8012217F55AC00B93B8C /* Washer.swift in Sources */,
+				3FF33EBC218AE6F30024B46D /* Atomic.swift in Sources */,
+				3F0E801A217F55D600B93B8C /* Employee.swift in Sources */,
+				3F73D4A32183167C0020F1A9 /* RangeReplaceableCollection+Extensions.swift in Sources */,
+				3F381BE821B8079600428FEC /* Observable.swift in Sources */,
+				3FD8DE83218060DD00F28CE3 /* MoneyGiver.swift in Sources */,
+				3F0E8018217F55C500B93B8C /* DispatchQueue+Extensions.swift in Sources */,
+				3FD315C92192D05500DE7591 /* CarFactory.swift in Sources */,
+				3FD8DE81218060D000F28CE3 /* MoneyReceiver.swift in Sources */,
+				3F0E8016217F55BA00B93B8C /* Car.swift in Sources */,
+				3F0E8014217F55B300B93B8C /* Director.swift in Sources */,
+				3FB67DB32181DEA5007041F9 /* F.swift in Sources */,
+				3FD584362188436B0051A858 /* Queue.swift in Sources */,
+				3F381BE221B7C6AC00428FEC /* Observer.swift in Sources */,
+				3F381BE621B7C70100428FEC /* WeakObserver.swift in Sources */,
+				3F0E8010217F55A500B93B8C /* Accountant.swift in Sources */,
+				3F0E800E217F559700B93B8C /* Service.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		3F0E8008217F365300B93B8C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		3F0E8009217F365300B93B8C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		3F0E800B217F365300B93B8C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = BDGN29TYRX;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+			};
+			name = Debug;
+		};
+		3F0E800C217F365300B93B8C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = BDGN29TYRX;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3F0E7FFE217F365300B93B8C /* Build configuration list for PBXProject "CarWash" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3F0E8008217F365300B93B8C /* Debug */,
+				3F0E8009217F365300B93B8C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3F0E800A217F365300B93B8C /* Build configuration list for PBXNativeTarget "CarWash" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3F0E800B217F365300B93B8C /* Debug */,
+				3F0E800C217F365300B93B8C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3F0E7FFB217F365300B93B8C /* Project object */;
+}

@@ -19,8 +19,8 @@ class Employee<ProcessingObject: MoneyGiver>: MoneyReceiver, MoneyGiver, Steateb
     var state: State {
         get { return self.atomicState.value }
         set {
-            for (identifier, weakObserver) in observers {
-                if let observer = weakObserver {
+            for (identifier, observer) in observers {
+                if let observer = observer.value {
                     self.atomicState.value = newValue
                     
                     switch newValue {
@@ -36,6 +36,7 @@ class Employee<ProcessingObject: MoneyGiver>: MoneyReceiver, MoneyGiver, Steateb
                     self.detach(forId: identifier)
                 }
             }
+            
         }
     }
     
@@ -43,7 +44,7 @@ class Employee<ProcessingObject: MoneyGiver>: MoneyReceiver, MoneyGiver, Steateb
         return self.atomicMoney.value
     }
     
-    var observers =  [Int : Observer?]()
+    var observers =  [Int : WeakObserver]()
     
     let name: String
     let atomicState = Atomic(State.available)
@@ -59,13 +60,9 @@ class Employee<ProcessingObject: MoneyGiver>: MoneyReceiver, MoneyGiver, Steateb
         self.queue = queue
     }
     
-    weak var observer: Observer?
-    
     func attach(observer: Observer) {
-        self.observer = observer
-        if let weakObserver = self.observer {
-            self.observers.updateValue(weakObserver, forKey: observer.id)
-        }
+        let weakObs = WeakObserver(value: observer)
+        self.observers.updateValue(weakObs, forKey: observer.id)
     }
     
     func detach(forId: Int) {

@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Service: Observer {
+class Service {
     
     var id = Int.random(in: 0...1000)
     
@@ -29,24 +29,6 @@ class Service: Observer {
         self.initializeObserver()
     }
 
-    func handleWaitingEvent<ObservableObject>(sender: ObservableObject) {
-        if sender is Accountant {
-            self.director.asyncProcess(object: self.accountant)
-        } else if let washer = sender as? Washer {
-            self.accountant.asyncProcess(object: washer)
-        }
-    }
-    
-    func handleAvailableEvent<ObservableObject>(sender: ObservableObject) {
-        if let washer = sender as? Washer {
-            self.cars.dequeue().do(washer.asyncProcess)
-        }
-    }
-    
-    func handleBusyEvent<ObservableObject>(sender: ObservableObject) {
-        
-    }
-
     func wash(car: Car) {
         self.washers.transform {
             let availableWasher = $0.first{ $0.state == .available }
@@ -61,9 +43,31 @@ class Service: Observer {
     
     private func initializeObserver() {
         self.washers.value.forEach { washer in
-            washer.attach(observer: self)
+            washer.observer {
+                switch $0 {
+                case .waitingForProcessing:
+                    self.accountant.asyncProcess(object: washer)
+                case .available:
+                    self.cars.dequeue().do(washer.asyncProcess)
+                default:
+                    return
+                }
+            }
         }
-        self.accountant.attach(observer: self)
-        self.director.attach(observer: self)
+
+        self.accountant.observer {
+            switch $0 {
+            case .waitingForProcessing:
+                 self.director.asyncProcess(object: self.accountant)
+            case .available:
+                self.accountant.continueWork()
+            default:
+                return
+            }
+        }
+
+        self.director.observer {_ in
+
+        }
     }
 }

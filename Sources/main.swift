@@ -10,11 +10,11 @@ import Foundation
 
 let runloop = RunLoop.current
 
-let names = ["adam","john","coddy","robert"]
-let washers = names.map { Washer(name: $0, queue: .background) }
+let names = ["adam", "john", "coddy", "robert"]
+let washers = names.map { Washer(name: $0) }
 
-let accountant = Accountant(name: "George", queue: .background)
-let director = Director(name: "Tony", queue: .background)
+let accountant = Accountant(name: "George")
+let director = Director(name: "Tony")
 
 let carWashingService = Service(
     washers: washers,

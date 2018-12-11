@@ -8,67 +8,25 @@
 
 import Foundation
 
-class Employee<ProcessingObject: MoneyGiver>: MoneyReceiver, MoneyGiver, Steateble, Observable {
-    
-    enum State {
-        case busy
-        case waitingForProcessing
-        case available
-    }
-    
-    var state: State {
-        get { return self.atomicState.value }
-        set {
-            for (identifier, observer) in observers {
-                if let observer = observer.value {
-                    self.atomicState.value = newValue
-                    
-                    switch newValue {
-                    case .waitingForProcessing:
-                        observer.handleWaitingEvent(sender: self)
-                    case .available:
-                        observer.handleAvailableEvent(sender: self)
-                        self.processQueue.dequeue().do(self.asyncProcess)
-                    case .busy:
-                        observer.handleBusyEvent(sender: self)
-                    }
-                } else {
-                    self.detach(forId: identifier)
-                }
-            }
-            
-        }
-    }
+class Employee<ProcessingObject: MoneyGiver>: Staff, MoneyReceiver, MoneyGiver {
     
     var money: Int {
         return self.atomicMoney.value
     }
     
-    var observers =  [Int : WeakObserver]()
-    
     let name: String
-    let atomicState = Atomic(State.available)
-    
-    private let processQueue = Queue<ProcessingObject>()
-    private let atomicMoney = Atomic(0)
     
     private let queue: DispatchQueue
     private let durationRange = 0.1...1.0
     
-    init(name: String, queue: DispatchQueue) {
+    private let processingQueue = Queue<ProcessingObject>()
+    private let atomicMoney = Atomic(0)
+    
+    init(name: String, queue: DispatchQueue = .background) {
         self.name = name
         self.queue = queue
     }
     
-    func attach(observer: Observer) {
-        let weakObs = WeakObserver(value: observer)
-        self.observers.updateValue(weakObs, forKey: observer.id)
-    }
-    
-    func detach(forId: Int) {
-        self.observers.removeValue(forKey: forId)
-    }
-        
     func receive(money: Int ) {
         self.atomicMoney.modify {
             $0 += money
@@ -92,11 +50,15 @@ class Employee<ProcessingObject: MoneyGiver>: MoneyReceiver, MoneyGiver, Steateb
     }
 
     func finishWork() {
-        if let process = self.processQueue.dequeue() {
+        if let process = self.processingQueue.dequeue() {
             self.process(object: process)
         } else {
             self.state = .waitingForProcessing
         }
+    }
+    
+    func continueWork() {
+        self.processingQueue.dequeue().do(self.asyncProcess)
     }
     
     private func process(object: ProcessingObject) {
@@ -113,7 +75,7 @@ class Employee<ProcessingObject: MoneyGiver>: MoneyReceiver, MoneyGiver, Steateb
                 $0 = .busy
                 self.process(object: object)
             } else {
-                self.processQueue.enqueue(object)
+                self.processingQueue.enqueue(object)
             }
         }
     }

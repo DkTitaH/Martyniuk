@@ -28,8 +28,10 @@ class Staff: Statable  {
     let observers = ObserverCollection()
     let atomicState = Atomic(State.available)
     
-    func observer(handler: @escaping Observer.Handler) {
+    func observer(handler: @escaping Observer.Handler) -> Observer {
         let observer = Observer(sender: self, handler: handler)
         self.observers.append(observer: observer)
+        
+        return observer
     }
 }

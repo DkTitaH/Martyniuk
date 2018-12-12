@@ -16,11 +16,16 @@ class Observer {
         return self.sender != nil
     }
     
-    weak var sender: Staff?
     let handler: Handler
+    
+    private weak var sender: Staff?
     
     init(sender: Staff, handler: @escaping Handler) {
         self.handler = handler
         self.sender = sender
+    }
+    
+    func stop() {
+        self.sender = nil
     }
 }

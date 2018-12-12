@@ -10,14 +10,17 @@ import Foundation
 
 class Service {
     
-    var id = Int.random(in: 0...1000)
-    
     private let accountant: Accountant
     private let director: Director
     private let washers: Atomic<[Washer]>
     
     private let cars = Queue<Car>()
-   
+    private var observers = [Observer]()
+
+    deinit {
+        
+    }
+    
     init(
         washers: [Washer],
         accountant: Accountant,
@@ -42,32 +45,36 @@ class Service {
     }
     
     private func initializeObserver() {
+        
         self.washers.value.forEach { washer in
-            washer.observer {
+        let washerObserver = washer.observer { [weak self, weak washer] in
                 switch $0 {
                 case .waitingForProcessing:
-                    self.accountant.asyncProcess(object: washer)
+                    washer.apply(self?.accountant.asyncProcess)
                 case .available:
-                    self.cars.dequeue().do(washer.asyncProcess)
+                    self?.cars.dequeue().apply(washer?.asyncProcess)
                 default:
                     return
                 }
             }
+            self.observers.append(washerObserver)
         }
 
-        self.accountant.observer {
+        let accountantObserver = self.accountant.observer { [weak self] in
+            let accountant = self?.accountant
             switch $0 {
             case .waitingForProcessing:
-                 self.director.asyncProcess(object: self.accountant)
+                 accountant.apply(self?.director.asyncProcess)
             case .available:
-                self.accountant.continueWork()
-            default:
-                return
+                self?.accountant.continueWork()
+            default: return
             }
         }
+        self.observers.append(accountantObserver)
 
-        self.director.observer {_ in
+        let directorObserver = self.director.observer {_ in
 
         }
+        self.observers.append(directorObserver)
     }
 }

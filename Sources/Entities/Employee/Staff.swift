@@ -19,6 +19,7 @@ class Staff: Statable {
     var state: State {
         get { return self.atomicState.value }
         set {
+            //need trade safety
             guard self.atomicState.value != newValue else { return }
             self.atomicState.value = newValue
             self.observers.notify(state: newValue)

@@ -72,6 +72,7 @@ class Employee<ProcessingObject: MoneyGiver>: Staff, MoneyReceiver, MoneyGiver {
     func asyncProcess(object: ProcessingObject) {
         self.atomicState.modify {
             if $0 == .available {
+    //the State setter is not called
                 $0 = .busy
                 self.process(object: object)
             } else {

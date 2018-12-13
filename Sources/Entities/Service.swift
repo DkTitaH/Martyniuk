@@ -10,13 +10,19 @@ import Foundation
 
 class Service {
     
-    private var observers = [Observer?]()
+    private var observers = [Observer]()
     
     private let accountant: Accountant
     private let director: Director
     private let washers: Atomic<[Washer]>
     
     private let cars = Queue<Car>()
+    
+    deinit {
+        self.observers.forEach {
+            $0.stop()
+        }
+    }
     
     init(
         washers: [Washer],
@@ -66,14 +72,10 @@ class Service {
             default: return
             }
         }
-
 //        let directorObserver = self.director.observer {_ in
 //
 //        }
-        
 //        self.observers.append(directorObserver)
-        
         self.observers.append(accountantObserver)
-
     }
 }

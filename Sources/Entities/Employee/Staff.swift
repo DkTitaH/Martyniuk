@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Staff: Statable  {
+class Staff: Statable {
     
     enum State {
         case busy

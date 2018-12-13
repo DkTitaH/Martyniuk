@@ -10,16 +10,13 @@ import Foundation
 
 class Service {
     
+    private var observers = [Observer?]()
+    
     private let accountant: Accountant
     private let director: Director
     private let washers: Atomic<[Washer]>
     
     private let cars = Queue<Car>()
-    private var observers = [Observer]()
-
-    deinit {
-        
-    }
     
     init(
         washers: [Washer],
@@ -29,7 +26,7 @@ class Service {
         self.washers =  Atomic(washers)
         self.accountant = accountant
         self.director = director
-        self.initializeObserver()
+        self.initializeObservers()
     }
 
     func wash(car: Car) {
@@ -44,8 +41,7 @@ class Service {
         }
     }
     
-    private func initializeObserver() {
-        
+    private func initializeObservers() {
         self.washers.value.forEach { washer in
         let washerObserver = washer.observer { [weak self, weak washer] in
                 switch $0 {
@@ -70,11 +66,14 @@ class Service {
             default: return
             }
         }
+
+//        let directorObserver = self.director.observer {_ in
+//
+//        }
+        
+//        self.observers.append(directorObserver)
+        
         self.observers.append(accountantObserver)
 
-        let directorObserver = self.director.observer {_ in
-
-        }
-        self.observers.append(directorObserver)
     }
 }

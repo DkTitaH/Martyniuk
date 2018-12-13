@@ -10,7 +10,7 @@ import Foundation
 
 let runloop = RunLoop.current
 
-let names = ["ДимаТугокодя", "john", "coddy", "robert"]
+let names = ["Fedor", "john", "coddy", "robert"]
 let washers = names.map { Washer(name: $0) }
 
 let accountant = Accountant(name: "George")
@@ -21,7 +21,6 @@ let carWashingService = Service(
     accountant: accountant,
     director: director
 )
-
 
 let car = Car(name: "car", money: 10)
 

@@ -8,16 +8,19 @@
 
 import Foundation
 
-class Service: Observer {
-    
-    var id = Int.random(in: 0...1000)
+class Service {
     
     private let accountant: Accountant
     private let director: Director
     private let washers: Atomic<[Washer]>
     
     private let cars = Queue<Car>()
-   
+    private var observers = [Observer]()
+
+    deinit {
+        
+    }
+    
     init(
         washers: [Washer],
         accountant: Accountant,
@@ -27,24 +30,6 @@ class Service: Observer {
         self.accountant = accountant
         self.director = director
         self.initializeObserver()
-    }
-
-    func handleWaitingEvent<ObservableObject>(sender: ObservableObject) {
-        if sender is Accountant {
-            self.director.asyncProcess(object: self.accountant)
-        } else if let washer = sender as? Washer {
-            self.accountant.asyncProcess(object: washer)
-        }
-    }
-    
-    func handleAvailableEvent<ObservableObject>(sender: ObservableObject) {
-        if let washer = sender as? Washer {
-            self.cars.dequeue().do(washer.asyncProcess)
-        }
-    }
-    
-    func handleBusyEvent<ObservableObject>(sender: ObservableObject) {
-        
     }
 
     func wash(car: Car) {
@@ -60,10 +45,36 @@ class Service: Observer {
     }
     
     private func initializeObserver() {
+        
         self.washers.value.forEach { washer in
-            washer.attach(observer: self)
+        let washerObserver = washer.observer { [weak self, weak washer] in
+                switch $0 {
+                case .waitingForProcessing:
+                    washer.apply(self?.accountant.asyncProcess)
+                case .available:
+                    self?.cars.dequeue().apply(washer?.asyncProcess)
+                default:
+                    return
+                }
+            }
+            self.observers.append(washerObserver)
         }
-        self.accountant.attach(observer: self)
-        self.director.attach(observer: self)
+
+        let accountantObserver = self.accountant.observer { [weak self] in
+            let accountant = self?.accountant
+            switch $0 {
+            case .waitingForProcessing:
+                 accountant.apply(self?.director.asyncProcess)
+            case .available:
+                self?.accountant.continueWork()
+            default: return
+            }
+        }
+        self.observers.append(accountantObserver)
+
+        let directorObserver = self.director.observer {_ in
+
+        }
+        self.observers.append(directorObserver)
     }
 }

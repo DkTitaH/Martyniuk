@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Manager<Processed: MoneyGiver & Steateble>: Employee<Processed> {
+class Manager<Processed: MoneyGiver & Statable>: Employee<Processed> {
     
     override func completeProcessing(object: Processed) {
         object.state = .available

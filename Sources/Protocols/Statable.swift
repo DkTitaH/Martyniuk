@@ -8,9 +8,7 @@
 
 import Foundation
 
-protocol Steateble: class {
+protocol Statable: class {
     
-    associatedtype Process: MoneyGiver
-    
-    var state: Employee<Process>.State { get set }
+    var state: Staff.State { get set }
 }

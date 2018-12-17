@@ -10,19 +10,13 @@ import Foundation
 
 class Service {
     
-    private var observers = [Observer]()
+    private var observers = Staff.Observers()
     
     private let accountant: Accountant
     private let director: Director
     private let washers: Atomic<[Washer]>
     
     private let cars = Queue<Car>()
-    
-    deinit {
-        self.observers.forEach {
-            $0.stop()
-        }
-    }
     
     init(
         washers: [Washer],
@@ -48,34 +42,33 @@ class Service {
     }
     
     private func initializeObservers() {
-        self.washers.value.forEach { washer in
-        let washerObserver = washer.observer { [weak self, weak washer] in
-                switch $0 {
+        self.observers += self.washers.value.map { washer in
+            let observers = washer.observer { [weak self, weak washer] state in
+                switch state {
                 case .waitingForProcessing:
-                    washer.apply(self?.accountant.asyncProcess)
+                        washer.apply(self?.accountant.asyncProcess)
                 case .available:
                     self?.cars.dequeue().apply(washer?.asyncProcess)
-                default:
+                case .busy:
                     return
                 }
             }
-            self.observers.append(washerObserver)
+            
+            return observers
         }
-
-        let accountantObserver = self.accountant.observer { [weak self] in
+    
+        let accountantObserver = self.accountant.observer { [weak self] state in
             let accountant = self?.accountant
-            switch $0 {
+            switch state {
             case .waitingForProcessing:
-                 accountant.apply(self?.director.asyncProcess)
+                accountant.apply(self?.director.asyncProcess)
+            case .busy:
+                return
             case .available:
-                self?.accountant.continueWork()
-            default: return
+                return
             }
         }
-//        let directorObserver = self.director.observer {_ in
-//
-//        }
-//        self.observers.append(directorObserver)
-        self.observers.append(accountantObserver)
+
+        self.observers.append(observer: accountantObserver)
     }
 }

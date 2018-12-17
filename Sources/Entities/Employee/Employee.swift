@@ -10,6 +10,20 @@ import Foundation
 
 class Employee<ProcessingObject: MoneyGiver>: Staff, MoneyReceiver, MoneyGiver {
     
+    override var state: Staff.State {
+        get { return self.atomicState.value }
+        set {
+            self.atomicState.modify { state in
+                if newValue == .available {
+                    state = .busy
+                    self.processingQueue.dequeue().do(self.process)
+                }
+                state = newValue
+                self.observers.notify(state: newValue)
+            }
+        }
+    }
+    
     var money: Int {
         return self.atomicMoney.value
     }
@@ -55,10 +69,6 @@ class Employee<ProcessingObject: MoneyGiver>: Staff, MoneyReceiver, MoneyGiver {
         } else {
             self.state = .waitingForProcessing
         }
-    }
-    
-    func continueWork() {
-        self.processingQueue.dequeue().do(self.asyncProcess)
     }
     
     private func process(object: ProcessingObject) {

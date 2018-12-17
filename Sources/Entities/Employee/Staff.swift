@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Staff: Statable {
+class Staff: ObservableObject<Staff.State>, Statable {
     
     enum State {
         case busy
@@ -16,23 +16,10 @@ class Staff: Statable {
         case available
     }
     
-    var state: State {
+    var state: State  {
         get { return self.atomicState.value }
-        set {
-            //need trade safety
-            guard self.atomicState.value != newValue else { return }
-            self.atomicState.value = newValue
-            self.observers.notify(state: newValue)
-        }
+        set { self.atomicState.value = newValue }
     }
-    
-    let observers = ObserverCollection()
+
     let atomicState = Atomic(State.available)
-    
-    func observer(handler: @escaping Observer.Handler) -> Observer {
-        let observer = Observer(sender: self, handler: handler)
-        self.observers.append(observer: observer)
-        
-        return observer
-    }
 }

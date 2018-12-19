@@ -54,7 +54,7 @@ class Service {
                 }
             }
             
-            return observers
+            return ObservableObject.Observers(observersArray: observers)
         }
     
         let accountantObserver = self.accountant.observer { [weak self] state in

@@ -19,7 +19,7 @@ class Employee<ProcessingObject: MoneyGiver>: Staff, MoneyReceiver, MoneyGiver {
                     self.processingQueue.dequeue().do(self.process)
                 }
                 state = newValue
-                self.observers.notify(state: newValue)
+                self.notify(state)
             }
         }
     }
@@ -64,10 +64,13 @@ class Employee<ProcessingObject: MoneyGiver>: Staff, MoneyReceiver, MoneyGiver {
     }
 
     func finishWork() {
-        if let process = self.processingQueue.dequeue() {
-            self.process(object: process)
-        } else {
-            self.state = .waitingForProcessing
+        self.atomicState.modify {
+            if let process = self.processingQueue.dequeue() {
+                self.process(object: process)
+            } else {
+                $0 = .waitingForProcessing
+                self.notify($0)
+            }
         }
     }
     
@@ -82,7 +85,6 @@ class Employee<ProcessingObject: MoneyGiver>: Staff, MoneyReceiver, MoneyGiver {
     func asyncProcess(object: ProcessingObject) {
         self.atomicState.modify {
             if $0 == .available {
-    //the State setter is not called
                 $0 = .busy
                 self.process(object: object)
             } else {

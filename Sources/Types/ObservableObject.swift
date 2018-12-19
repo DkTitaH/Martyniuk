@@ -12,12 +12,16 @@ class ObservableObject<State> {
     
     typealias Handler = (State) -> ()
     
-    let observers = Observers()
+    private let observers = Observers()
     
-    func observer(handler: @escaping Handler) -> Observer {
+    public func observer(handler: @escaping Handler) -> Observer {
         let observer = Observer(sender: self, handler: handler)
         self.observers.append(observer: observer)
-
+        
         return observer
+    }
+    
+    public func notify(_ state: State) {
+        self.observers.notify(state: state)
     }
 }

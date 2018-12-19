@@ -27,10 +27,11 @@
 		3FD8DE7A2180574000F28CE3 /* DispatchTime+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD8DE792180574000F28CE3 /* DispatchTime+Extensions.swift */; };
 		3FD8DE81218060D000F28CE3 /* MoneyReceiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD8DE80218060D000F28CE3 /* MoneyReceiver.swift */; };
 		3FD8DE83218060DD00F28CE3 /* MoneyGiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD8DE82218060DD00F28CE3 /* MoneyGiver.swift */; };
+		3FDA964A21CA87EE00AEB3C6 /* ObservableObject.Observer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDA964921CA87EE00AEB3C6 /* ObservableObject.Observer.swift */; };
 		3FDDD32921BFD79300C90E50 /* Staff.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDDD32821BFD79300C90E50 /* Staff.swift */; };
 		3FF33EBC218AE6F30024B46D /* Atomic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF33EBB218AE6F30024B46D /* Atomic.swift */; };
 		3FF5DFB321C39DFD0046136F /* ObservableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF5DFB221C39DFD0046136F /* ObservableObject.swift */; };
-		3FF5DFB521C3F4DD0046136F /* ObservableObject+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF5DFB421C3F4DD0046136F /* ObservableObject+Extension.swift */; };
+		3FF5DFB521C3F4DD0046136F /* ObservableObject.Observers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF5DFB421C3F4DD0046136F /* ObservableObject.Observers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -67,10 +68,11 @@
 		3FD8DE792180574000F28CE3 /* DispatchTime+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DispatchTime+Extensions.swift"; sourceTree = "<group>"; };
 		3FD8DE80218060D000F28CE3 /* MoneyReceiver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneyReceiver.swift; sourceTree = "<group>"; };
 		3FD8DE82218060DD00F28CE3 /* MoneyGiver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneyGiver.swift; sourceTree = "<group>"; };
+		3FDA964921CA87EE00AEB3C6 /* ObservableObject.Observer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableObject.Observer.swift; sourceTree = "<group>"; };
 		3FDDD32821BFD79300C90E50 /* Staff.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Staff.swift; sourceTree = "<group>"; };
 		3FF33EBB218AE6F30024B46D /* Atomic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Atomic.swift; sourceTree = "<group>"; };
 		3FF5DFB221C39DFD0046136F /* ObservableObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableObject.swift; sourceTree = "<group>"; };
-		3FF5DFB421C3F4DD0046136F /* ObservableObject+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ObservableObject+Extension.swift"; sourceTree = "<group>"; };
+		3FF5DFB421C3F4DD0046136F /* ObservableObject.Observers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableObject.Observers.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +133,9 @@
 				3FF33EBB218AE6F30024B46D /* Atomic.swift */,
 				3FB67DB22181DEA5007041F9 /* F.swift */,
 				3FD584352188436B0051A858 /* Queue.swift */,
+				3FF5DFB221C39DFD0046136F /* ObservableObject.swift */,
+				3FDA964921CA87EE00AEB3C6 /* ObservableObject.Observer.swift */,
+				3FF5DFB421C3F4DD0046136F /* ObservableObject.Observers.swift */,
 			);
 			path = Types;
 			sourceTree = "<group>";
@@ -138,7 +143,6 @@
 		3FD8DE7C2180609B00F28CE3 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				3FF5DFB421C3F4DD0046136F /* ObservableObject+Extension.swift */,
 				3FD8DE792180574000F28CE3 /* DispatchTime+Extensions.swift */,
 				3F0E8017217F55C500B93B8C /* DispatchQueue+Extensions.swift */,
 				3F73D4A0218303C30020F1A9 /* Strideable+Extensions.swift */,
@@ -172,7 +176,6 @@
 			children = (
 				3F0E800D217F559700B93B8C /* Service.swift */,
 				3FD315C82192D05500DE7591 /* CarFactory.swift */,
-				3FF5DFB221C39DFD0046136F /* ObservableObject.swift */,
 				3FD8DE842180613000F28CE3 /* Clients */,
 				3F017F1021B1264400011B16 /* Employee */,
 			);
@@ -250,7 +253,8 @@
 				3FD8DE83218060DD00F28CE3 /* MoneyGiver.swift in Sources */,
 				3F0E8018217F55C500B93B8C /* DispatchQueue+Extensions.swift in Sources */,
 				3FD315C92192D05500DE7591 /* CarFactory.swift in Sources */,
-				3FF5DFB521C3F4DD0046136F /* ObservableObject+Extension.swift in Sources */,
+				3FDA964A21CA87EE00AEB3C6 /* ObservableObject.Observer.swift in Sources */,
+				3FF5DFB521C3F4DD0046136F /* ObservableObject.Observers.swift in Sources */,
 				3FF5DFB321C39DFD0046136F /* ObservableObject.swift in Sources */,
 				3FD8DE81218060D000F28CE3 /* MoneyReceiver.swift in Sources */,
 				3F0E8016217F55BA00B93B8C /* Car.swift in Sources */,

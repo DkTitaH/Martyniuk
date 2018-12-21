@@ -21,7 +21,7 @@ class ObservableObject<State> {
         return observer
     }
     
-    public func notify(_ state: State) {
+    func notify(_ state: State) {
         self.observers.notify(state: state)
     }
 }

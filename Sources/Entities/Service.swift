@@ -10,65 +10,39 @@ import Foundation
 
 class Service {
     
-    private var observers = Staff.Observers()
-    
-    private let accountant: Accountant
-    private let director: Director
-    private let washers: Atomic<[Washer]>
+    private let washerManager: EmployeeManager<Car, Washer>
+    private let accountantManager: EmployeeManager<Washer, Accountant>
+    private let directorManager: EmployeeManager<Accountant, Director>
+   
+    private let washerObservers = Atomic([EmployeeManager<Car, Washer>.Observer]())
+    private let accountantObservers = Atomic([EmployeeManager<Washer, Accountant>.Observer]())
     
     private let cars = Queue<Car>()
     
     init(
         washers: [Washer],
-        accountant: Accountant,
-        director: Director
+        accountant: [Accountant],
+        director: [Director]
     ) {
-        self.washers =  Atomic(washers)
-        self.accountant = accountant
-        self.director = director
-        self.initializeObservers()
+        self.accountantManager = EmployeeManager(processors: accountant)
+        self.directorManager = EmployeeManager(processors: director)
+        self.washerManager = EmployeeManager(processors: washers)
+        self.initializeManagers()
     }
-
+    
+    func initializeManagers() {
+        let accountantObserver = self.accountantManager.observer { accountant in
+            self.directorManager.process(object: accountant)
+        }
+        let washerObserver = self.washerManager.observer { washer in
+            self.accountantManager.process(object: washer)
+        }
+        
+        self.washerObservers.value.append(washerObserver)
+        self.accountantObservers.value.append(accountantObserver)
+    }
+    
     func wash(car: Car) {
-        self.washers.transform {
-            let availableWasher = $0.first{ $0.state == .available }
-            
-            if let washer = availableWasher {
-                washer.asyncProcess(object: car)
-            } else {
-                self.cars.enqueue(car)
-            }
-        }
-    }
-    
-    private func initializeObservers() {
-        self.observers += self.washers.value.map { washer in
-            let observers = washer.observer { [weak self, weak washer] state in
-                switch state {
-                case .waitingForProcessing:
-                        washer.apply(self?.accountant.asyncProcess)
-                case .available:
-                    self?.cars.dequeue().apply(washer?.asyncProcess)
-                case .busy:
-                    return
-                }
-            }
-            
-            return ObservableObject.Observers(observersArray: observers)
-        }
-    
-        let accountantObserver = self.accountant.observer { [weak self] state in
-            let accountant = self?.accountant
-            switch state {
-            case .waitingForProcessing:
-                accountant.apply(self?.director.asyncProcess)
-            case .busy:
-                return
-            case .available:
-                return
-            }
-        }
-
-        self.observers.append(observer: accountantObserver)
+        self.washerManager.process(object: car)
     }
 }

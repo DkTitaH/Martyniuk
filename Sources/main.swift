@@ -18,13 +18,15 @@ let director = Director(name: "Tony")
 
 let carWashingService = Service(
     washers: washers,
-    accountant: accountant,
-    director: director
+    accountant: [accountant],
+    director: [director]
 )
 
 let car = Car(name: "car", money: 10)
 
 let carFactory = CarFactory(carWash: carWashingService, queue: .background)
 carFactory.start()
+sleep(17)
+carFactory.stop()
 
 runloop.run()

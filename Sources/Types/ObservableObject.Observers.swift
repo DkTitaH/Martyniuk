@@ -23,10 +23,7 @@ extension ObservableObject {
         convenience init(observersArray: [Observer]) {
             self.init()
             let observersArray = Atomic(observersArray)
-            self.observers.modify {
-                $0 += observersArray.value
-            }
-         
+            self.observers.modify { $0 = observersArray.value }
         }
         
         func append(observer: Observer) {
@@ -48,7 +45,6 @@ extension ObservableObject {
             lhs.observers.modify {
                 $0 += rhs.observers.value
             }
-//            lhs.observers.value += rhs.observers.value
         }
     }
 }

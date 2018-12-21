@@ -14,12 +14,8 @@ class Employee<ProcessingObject: MoneyGiver>: Staff, MoneyReceiver, MoneyGiver {
         get { return self.atomicState.value }
         set {
             self.atomicState.modify { state in
-                if newValue == .available {
-                    state = .busy
-                    self.processingQueue.dequeue().do(self.process)
-                }
                 state = newValue
-                self.notify(state)
+                self.notify(newValue)
             }
         }
     }
@@ -33,7 +29,6 @@ class Employee<ProcessingObject: MoneyGiver>: Staff, MoneyReceiver, MoneyGiver {
     private let queue: DispatchQueue
     private let durationRange = 0.1...1.0
     
-    private let processingQueue = Queue<ProcessingObject>()
     private let atomicMoney = Atomic(0)
     
     init(name: String, queue: DispatchQueue = .background) {
@@ -64,31 +59,18 @@ class Employee<ProcessingObject: MoneyGiver>: Staff, MoneyReceiver, MoneyGiver {
     }
 
     func finishWork() {
-        self.atomicState.modify {
-            if let process = self.processingQueue.dequeue() {
-                self.process(object: process)
-            } else {
-                $0 = .waitingForProcessing
-                self.notify($0)
-            }
-        }
+        self.state = .waitingForProcessing
     }
-    
-    private func process(object: ProcessingObject) {
-        self.queue.asyncAfter(deadline: .afterRandomInterval(in: self.durationRange)) {
-            self.performProcessing(object: object)
-            self.completeProcessing(object: object)
-            self.finishWork()
-        }
-    }
-    
+
     func asyncProcess(object: ProcessingObject) {
         self.atomicState.modify {
             if $0 == .available {
                 $0 = .busy
-                self.process(object: object)
-            } else {
-                self.processingQueue.enqueue(object)
+                self.queue.asyncAfter(deadline: .afterRandomInterval(in: self.durationRange)) {
+                    self.performProcessing(object: object)
+                    self.completeProcessing(object: object)
+                    self.finishWork()
+                }
             }
         }
     }

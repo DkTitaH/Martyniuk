@@ -25,6 +25,7 @@ class CarFactory {
     private let queue: DispatchQueue
     
     deinit {
+        self.token?.stop() 
         self.stop()
     }
 

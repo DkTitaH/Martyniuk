@@ -20,7 +20,7 @@ extension ObservableObject {
             return self.sender != nil
         }
         
-        let handler: Handler
+        private(set) var handler: Handler
         
         private weak var sender: ObservableObject?
         

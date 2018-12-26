@@ -14,8 +14,7 @@ class Service {
     private let accountantManager: EmployeeManager<Washer, Accountant>
     private let directorManager: EmployeeManager<Accountant, Director>
    
-    private let washerObservers = Atomic([EmployeeManager<Car, Washer>.Observer]())
-    private let accountantObservers = Atomic([EmployeeManager<Washer, Accountant>.Observer]())
+    private let canclellable = CompositCancellableProperty()
     
     private let cars = Queue<Car>()
     
@@ -34,12 +33,12 @@ class Service {
         let accountantObserver = self.accountantManager.observer { accountant in
             self.directorManager.process(object: accountant)
         }
+        
         let washerObserver = self.washerManager.observer { washer in
             self.accountantManager.process(object: washer)
         }
         
-        self.washerObservers.value.append(washerObserver)
-        self.accountantObservers.value.append(accountantObserver)
+        self.canclellable.value = [accountantObserver, washerObserver]
     }
     
     func wash(car: Car) {

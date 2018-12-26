@@ -22,27 +22,37 @@ public class Atomic<Value> {
     
     private let lock: NSLocking
     private let didSet: PropertyObserver?
+    private let willSet: PropertyObserver?
     
     public init(
         _ value: ValueType,
         lock: NSRecursiveLock = NSRecursiveLock(),
-        didSet: PropertyObserver? = nil
+        didSet: PropertyObserver? = nil,
+        willSet: PropertyObserver? = nil
     ) {
         self.mutableValue = value
         self.lock = lock
         self.didSet = didSet
+        self.willSet = willSet
     }
     
     @discardableResult
     public func modify<Result>(_ action: (inout ValueType) -> Result) -> Result {
         return self.lock.locked {
             let oldValue = self.mutableValue
+            var newValue = self.mutableValue
+
+            let result = action(&newValue)
+            
+            self.willSet?((old: oldValue, new: newValue))
             
             defer {
                 self.didSet?((oldValue, self.mutableValue))
             }
             
-            return action(&self.mutableValue)
+            self.mutableValue = newValue
+            
+            return result
         }
     }
     

@@ -12,7 +12,7 @@ class EmployeeManager<ProcessingObject: MoneyGiver, Processor: Employee<Processi
     
     private let processingQueue = Queue<ProcessingObject>()
     private let processors = Atomic([Processor]())
-    private let observers = Atomic([Staff.Observer]())
+    private let cancellableObservers = CompositCancellableProperty()
     
     init(processors: [Processor]) {
         self.processors.value = processors
@@ -21,36 +21,27 @@ class EmployeeManager<ProcessingObject: MoneyGiver, Processor: Employee<Processi
     }
     
     func process(object: ProcessingObject) {
+        self.processingQueue.enqueue(object)
         self.processors.transform {
             let availableProcessor = $0.first{ $0.state == .available }
-            if self.processingQueue.isEmpty {
-                if let processor = availableProcessor {
-                    if let object = processingQueue.dequeue() {
-                        processor.asyncProcess(object: object)
-                    } else {
-                        processor.asyncProcess(object: object)
-                    }
-                } else {
-                    self.processingQueue.enqueue(object)
+            if let processor = availableProcessor {
+                if let object = self.processingQueue.dequeue() {
+                    processor.asyncProcess(object: object)
                 }
-            } else {
-                self.processingQueue.enqueue(object)
             }
         }
     }
     
     private func initializeObservers() {
-        self.observers.value += self.processors.value.map { processor in
+        self.cancellableObservers.value = self.processors.value.map { processor in
             let observers = processor.observer { [weak self, weak processor] state in
-                DispatchQueue.background.async {
-                    switch state {
-                    case .waitingForProcessing:
-                        processor.apply(self?.notify)
-                    case .available:
-                        self?.processingQueue.dequeue().apply(processor?.asyncProcess)
-                    case .busy:
-                        return
-                    }
+                switch state {
+                case .waitingForProcessing:
+                    processor.apply(self?.notify)
+                case .available:
+                    self?.processingQueue.dequeue().apply(processor?.asyncProcess)
+                case .busy:
+                    return
                 }
             }
             

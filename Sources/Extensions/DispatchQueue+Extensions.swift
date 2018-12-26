@@ -20,7 +20,16 @@ extension DispatchQueue {
 
 extension DispatchQueue {
     
-    class CancellationToken {
+    class CancellationToken: Cancellable {
+        
+        var isCancelled: Bool {
+            return !self.isRunning
+        }
+        
+        func cancel() {
+            self.stop()
+        }
+        
 
         var isRunning: Bool {
             return self.atomicRunning.value

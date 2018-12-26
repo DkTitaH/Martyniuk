@@ -63,15 +63,16 @@ class Employee<ProcessingObject: MoneyGiver>: Staff, MoneyReceiver, MoneyGiver {
     }
 
     func asyncProcess(object: ProcessingObject) {
-        self.atomicState.modify {
-            if $0 == .available {
-                $0 = .busy
+//        self.atomicState.modify {
+//            if $0 == .available {
+//                $0 = .busy
+                self.state = .busy
                 self.queue.asyncAfter(deadline: .afterRandomInterval(in: self.durationRange)) {
                     self.performProcessing(object: object)
                     self.completeProcessing(object: object)
                     self.finishWork()
                 }
-            }
-        }
+//            }
+//        }
     }
 }

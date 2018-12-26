@@ -10,7 +10,11 @@ import Foundation
 
 extension ObservableObject {
     
-    class Observer: Hashable {
+    class Observer: Hashable, Cancellable {
+        
+        var isCancelled: Bool {
+            return !self.isObserving
+        }
         
         var hashValue: Int {
             return ObjectIdentifier(self).hashValue
@@ -29,7 +33,7 @@ extension ObservableObject {
             self.sender = sender
         }
         
-        func stop() {
+        func cancel() {
             self.sender = nil
         }
         
